@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "消息",
+    "disableScroll":true,
+    "usingComponents":
+    {
+    	"mp-emoji": "/components/emoji/index"
+    }
+}

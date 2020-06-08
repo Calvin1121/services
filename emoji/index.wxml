@@ -1,0 +1,19 @@
+<!--components/emoji/emoji.wxml-->
+<view class="weui-emoji_area" style="height: {{height}}px; background-color: {{backgroundColor}}">
+  <view 
+    class="weui-emotion_list"
+    style="padding-left: {{padding}}rpx; padding-right: {{padding}}rpx;"
+  >
+    <block wx:for="{{emotions}}" wx:key="*this">
+      <view class="weui-emotion_item">
+        <view class="weui-icon_emotion {{item.style}}" style="background-image: url({{source}});" data-idx="{{index}}" bindtap="insertEmoji"></view>
+      </view>
+    </block>
+  </view>
+  <view class="weui-emoji__operation">
+    <view class="weui-emoji__operation__delete" bindtap="deleteEmoji" wx:if="{{showDel}}">
+      <image src="./icon_emotion_del.png" class="weui-emotion_del_btn"></image>
+    </view>
+    <view class="weui-emoji__operation__send" bindtap="send" wx:if="{{showSend}}">发送</view>
+  </view>
+</view>

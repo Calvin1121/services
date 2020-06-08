@@ -1,0 +1,55 @@
+<scroll-view style="height:{{'calc(100vh - ' + (_keyboardShow?keyboardHeight:0) + 'px - ' + (replyHeight||0) + 'px)'}}" scroll-y scroll-top="{{scrollTop}}" scroll-with-animation>
+    <view class="chats p-l-20 p-r-20 p-t-30">
+        <view class="chat-item m-t-10 p-b-40 flex {{item.uid == uid?'justify-content-end':''}}" wx:for="{{chats}}" wx:key="index">
+            <image class="avatar m-r-30" src="{{item.avatar||'/static/default-face.png'}}" mode="aspectFill" wx:if="{{item.uid != uid}}"></image>
+            <view class="msg fs-30 color-333 content-box border-box align-self-center flex flex-wrap align-items-center {{parsedComment.type != 3?'p-t-20 p-b-20 p-l-20 p-r-20':''}}" style="background:{{item.uid == uid?'#ffd2d0':'#fff'}};line-height:{{parsedComment.type != 3?'24px':'unset'}}">
+                <block wx:for="{{item.parsedComment}}" wx:for-item="parsedComment" wx:for-index="p_index" wx:key="p_index">
+                    <block wx:if="{{parsedComment.type == 1}}">
+                        {{parsedComment.content}}
+                    </block>
+                    <view wx:if="{{parsedComment.type === 2}}" style="display: inline-block; width: {{24}}px; height: {{24}}px">
+                        <view class="{{parsedComment.imageClass}}" style="background-image: url({{emojiSource}});transform-origin: 0 0; transform: scale({{24 / 64}});"></view>
+                    </view>
+                    <block wx:if="{{parsedComment.type == 3}}">
+                        <image class="pic" src="{{parsedComment.content}}" mode="aspectFill" data-current="{{parsedComment.content}}" catchtap="preview"></image>
+                    </block>
+                </block>
+            </view>
+            <image class="avatar m-l-30" src="{{item.avatar||'/static/default-face.png'}}" mode="aspectFill" wx:if="{{item.uid == uid}}"></image>
+        </view>
+    </view>
+    <view id="bttm"></view>
+</scroll-view>
+<view class="reply_wrp btn-fixed" id="reply" style="bottom:{{_keyboardShow?keyboardHeight:0}}px">
+    <view class="reply_tool">
+        <view class="reply_form_wrp">
+            <label for="" class="reply_label">
+                <input class="reply_input" cursor-spacing="20rpx" confirm-type="send" adjust-position="{{false}}" confirm-hold value="{{comment}}" cursor="{{cursor}}" focus="{{focus}}" bindblur="onBlur" bindfocus="onFocus" bindkeyboardheightchange="onkeyboardHeightChange" bindinput="onInput" bindconfirm="onsend" wx:if="{{_keyboardShow}}" />
+                <input class="reply_input fake" disabled value="{{comment}}" catchtap="toggleInput" wx:else />
+            </label>
+        </view>
+        <view class="reply_button flex align-items-center justify-content-center replay_emotion_button m-r-20" bindtap="toggleFunction" data-flag="emoji">
+            <!-- <view class="iconfont  {{!emoji?'icon-liaotianbiaoqing':'icon-shuru'}} color-333 fs-60"></view> -->
+            <view class="iconfont icon-liaotianbiaoqing color-333 fs-60"></view>
+        </view>
+        <view class="reply_button flex align-items-center justify-content-center replay_media_button" bindtap="toggleFunction" data-flag="function">
+            <view class="iconfont icon-liaotiantianjia color-333 fs-60"></view>
+        </view>
+    </view>
+    <view class="reply_panel_wrp" hidden="{{!emoji && !function}}">
+        <view class="reply_panel {{emoji ? 'show': ''}}" hidden="{{!emoji}}">
+            <mp-emoji source="{{emojiSource}}" class="mp-emoji" bindinsertemoji="insertEmoji" binddelemoji="deleteEmoji" bindsend="onsend"></mp-emoji>
+        </view>
+        <view class="reply_panel flex flex-column  {{function ? 'show': ''}}" hidden="{{!function}}">
+            <view class="swiper flex-1 flex">
+                <view class="function-item flex flex-column align-items-center justify-content-center" wx:for="{{functions}}" wx:key="index" data-item="{{item}}" catchtap="tapFunction">
+                    <view class="icon-block flex align-items-center justify-content-center">
+                        <view class="iconfont {{item.icon}} color-333" style="font-size:44rpx"></view>
+                    </view>
+                    <view class="label fs-26 color-666 m-t-10">{{item.label}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="ipx-holder" wx:if="{{isIPX}}"></view>
+</view>

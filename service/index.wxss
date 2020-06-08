@@ -1,0 +1,131 @@
+scroll-view {
+    background-color: #fafafa;
+}
+
+.avatar {
+    width: 100rpx;
+    height: 100rpx;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    box-shadow: 3rpx 3rpx 17rpx 1rpx rgba(100, 100, 100, 0.05);
+}
+
+.msg {
+    height: auto;
+    max-width: 450rpx;
+    text-align: justify;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.pic {
+    width: 320rpx;
+    height: 200rpx;
+    vertical-align: middle;
+    border-radius: 15rpx;
+}
+
+.reply_wrp {
+    bottom: 0;
+    width: 100vw;
+    background-color: #ffffff;
+}
+
+.reply_tool {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 0;
+    padding: 20rpx 30rpx;
+    position: relative;
+}
+
+.reply_tool:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1 rpx solid rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.reply_form_wrp {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    min-width: 0;
+}
+
+.reply_label {
+    display: block;
+    background-color: #FFFFFF;
+    border-radius: 10rpx;
+    margin-right: 30rpx;
+}
+
+.reply_input {
+    background: #fafafa;
+    font-size: 32rpx;
+    /*min-height: 40px;*/
+    height: 76rpx;
+    padding: 0 24rpx;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 10rpx;
+    caret-color: #1AAD19;
+}
+
+.reply_button {
+    width: 64rpx;
+    height: 64rpx;
+}
+
+.reply_panel_wrp {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.reply_panel {
+    /*height: 200px;*/
+    height: calc(100%);
+    overflow: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 300px;
+    -webkit-transition: top .2s;
+    transition: top .2s;
+}
+
+.swiper-item {}
+
+.reply_panel[hidden] {
+    display: block;
+}
+
+.reply_panel.show {
+    top: 0;
+}
+
+swiper-item {
+    padding: 0rpx 20rpx;
+}
+
+.function-item {
+    width: calc(100% / 4);
+    height: calc(100% / 2);
+}
+
+.icon-block {
+    width: 128rpx;
+    height: 128rpx;
+    border-radius: 40rpx;
+    background: #fafafa;
+}
